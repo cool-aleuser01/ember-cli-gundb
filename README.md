@@ -1,6 +1,6 @@
 # Ember-gun-adapter
 
-This README outlines the details of collaborating on this Ember addon.
+Adapter to allow [GunDB] to work with [Ember Data](https://github.com/emberjs/data)
 
 ## Installation
 
