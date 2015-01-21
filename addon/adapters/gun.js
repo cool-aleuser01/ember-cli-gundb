@@ -4,7 +4,7 @@ import config from './config/environment';
 
 export default ApplicationAdapter.extend({
   setupGun: function() {
-    var gun = Gun({
+    var gun = new Gun({
       s3: {
         key: config.APP.AWS_ACCESS_KEY,
         secret: config.APP.AWS_SECRET_TOKEN,
