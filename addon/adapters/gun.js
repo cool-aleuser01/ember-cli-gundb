@@ -1,21 +1,17 @@
-import ApplicationAdapter from './application';
 import Ember from 'ember';
-import config from './config/environment';
+import DS from 'ember-data';
 
-export default ApplicationAdapter.extend({
-  setupGun: function() {
-    var gun = new Gun({
-      s3: {
-        key: config.APP.AWS_ACCESS_KEY,
-        secret: config.APP.AWS_SECRET_TOKEN,
-        bucket: config.APP.AWS_BUCKET
-      }
-    });
-    this.set('gun', gun);
-  }.on('init'),
+export default DS.Adapter.extend({
 
   find: function() {
+  // Store the instance of Gun as a property of the adapter
+  gun: null,
 
+  init: function(options) {
+    // Whatever options are passed to the Gun Adapter on creation
+    // will be passed to Gun
+    var gun = new Gun(options);
+    this.set('gun', gun);
   },
 
   createRecord: function(store, type, record) {
@@ -30,16 +26,20 @@ export default ApplicationAdapter.extend({
 
   },
 
-  deleteRecord: function() {
+  deleteRecord: function(store, type, record) {
+
+  },
+
+  find: function(store, type, record) {
 
   },
 
   findAll: function() {
-
+    throw new Error('findAll() is not yet supported by Gun');
   },
 
   findQuery: function() {
-
+    throw new Error('findQuery() is not yet supported by Gun');
   }
 
 });
