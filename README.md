@@ -1,5 +1,7 @@
 # Ember-gun-adapter
 
+[![Build Status](https://travis-ci.org/gundb/ember-cli-gundb.svg)](https://travis-ci.org/gundb/ember-cli-gundb)
+
 Adapter to allow [GunDB] to work with [Ember Data](https://github.com/emberjs/data)
 
 ## Installation
