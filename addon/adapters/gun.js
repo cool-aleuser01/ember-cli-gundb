@@ -36,8 +36,19 @@ export default DS.Adapter.extend({
     });
   },
 
-  updateRecord: function() {
+  updateRecord: function(store, type, record) {
+    if (Ember.isBlank(record.id)) {
+      throw new Error('ID is required for updating record');
+    }
 
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      var gun = this.get('gun');
+      gun.load(type + '/' + record.id).blank(function() {
+        reject();
+      }).set(record).then(function() {
+        resolve(record);
+      });
+    });
   },
 
   deleteRecord: function(store, type, record) {
